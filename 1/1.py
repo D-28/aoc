@@ -41,12 +41,19 @@ import sys
 # print(f'Execution time: {(end_time - start_time) * 1_000_000}µs')
 
 data = open(sys.argv[1]).read().strip()
-ans = 0 
+ans1 = 0 
+ans2 = 0 
 for line in data.split('\n'):
-    digits = []
-    for char in line:
-        if char.isdigit():
-            digits.append(char)
-    score = int(digits[0] + digits[-1])
-    ans += score
-print(ans)
+    digits1 = []
+    digits2 = []
+    for i,c in enumerate(line):
+        if c.isdigit():
+            digits1.append(c)
+            digits2.append(c)
+        for d, val in enumerate(['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']):
+            if line[i:].startswith(val):
+                digits2.append(str(d+1))
+    ans1 += int(digits1[0] + digits1[-1])
+    ans2 += int(digits2[0] + digits2[-1])
+print(ans1)
+print(ans2)
