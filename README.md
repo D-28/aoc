@@ -1,2 +1,3 @@
-# AoC
-2023
+# Advent of Code
+
+Current year: 2023
