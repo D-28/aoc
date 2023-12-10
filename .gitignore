@@ -24,4 +24,4 @@ go.work
 venv/
 
 # Data files
-*.in
+# *.in

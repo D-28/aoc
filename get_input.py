@@ -3,6 +3,7 @@ import argparse
 import subprocess
 import sys
 import requests
+import re
 
 # Usage: ./get_input.py > 1.in
 # You must fill in SESSION following the instructions below.
@@ -26,5 +27,9 @@ args = parser.parse_args()
 cmd = f'curl https://adventofcode.com/{args.year}/day/{args.day}/input --cookie "session={SESSION}" -A {useragent}'
 output = subprocess.check_output(cmd, shell=True)
 output = output.decode('utf-8')
-print(output, end='')
-print('\n'.join(output.split('\n')[:10]), file=sys.stderr)
+
+pattern = re.compile(r'<HTML>.*?</HTML>', re.DOTALL)
+sanitized = re.sub(pattern, '', output)
+
+print(sanitized, end='')
+print('\n'.join(sanitized.split('\n')[:10]), file=sys.stderr)
